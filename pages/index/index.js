@@ -6,13 +6,9 @@ import classNames from "classnames";
 
 import { listFiles } from "./list-files";
 
-<<<<<<< HEAD
 import MarkdownPreviewer from "./MarkdownPreviewer";
-=======
 // import MarkdownEditor from "./MarkdownEditor";
-import MarkdownPreviewer from "./MarkdownPreviewer";
 // import PlaintextPreviewer from "./PlaintextPreviewer";
->>>>>>> master
 import PlaintextEditor from "./PlaintextEditor";
 import JSPreviewer from "./JSPreviewer";
 import {
