@@ -118,6 +118,8 @@ function Previewer({ file }) {
       >
         <PrefillLang lang="js">{value}</PrefillLang>
       </PrefillEmbed>
+    );
+  }
 
   if (file.type === "text/markdown") {
     return (
