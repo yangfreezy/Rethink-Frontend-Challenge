@@ -6,8 +6,14 @@ import classNames from "classnames";
 
 import { listFiles } from "./list-files";
 
-// import MarkdownEditor from "./MarkdownEditor";
+import MarkdownPreviewer from "./MarkdownPreviewer";
 import PlaintextEditor from "./PlaintextEditor";
+import JSPreviewer from "./JSPreviewer";
+import {
+  PrefillEmbed,
+  PrefillLang,
+  useCodePenEmbed
+} from "react-codepen-prefill-embed";
 
 import IconPlaintextSVG from "./assets/icon-plaintext.svg";
 import IconMarkdownSVG from "./assets/icon-markdown.svg";
@@ -102,6 +108,25 @@ function Previewer({ file }) {
   //     </div>
   //   );
   // }
+  //
+  if (file.type === "text/javascript") {
+    useCodePenEmbed();
+    return (
+      <PrefillEmbed
+        embedHeight="600"
+        themeId="31205"
+        editable
+        defaultTabs={["js"]}
+        scripts={[
+          "https://unpkg.com/react@16.8.6/umd/react.development.js",
+          "https://unpkg.com/react-dom@16.8.6/umd/react-dom.development.js"
+        ]}
+        stylesheets={["https://unpkg.com/normalize.css@8.0.1/normalize.css"]}
+      >
+        <PrefillLang lang="js">{value}</PrefillLang>
+      </PrefillEmbed>
+    );
+  }
 
   return (
     <div className={css.preview}>
@@ -117,8 +142,9 @@ Previewer.propTypes = {
 
 // Uncomment keys to register editors for media types
 const REGISTERED_EDITORS = {
-  // "text/plain": PlaintextEditor,
-  // "text/markdown": MarkdownEditor,
+  "text/plain": PlaintextEditor,
+  "text/markdown": MarkdownPreviewer,
+  "text/javascript": JSPreviewer
 };
 
 function PlaintextFilesChallenge() {

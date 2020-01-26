@@ -9,6 +9,7 @@
     "lodash": "^4.17.15",
     "next": "^9.1.7",
     "react": "^16.12.0",
+    "react-codepen-prefill-embed": "0.0.2",
     "react-dom": "^16.12.0",
     "showdown": "^1.9.1"
   },
