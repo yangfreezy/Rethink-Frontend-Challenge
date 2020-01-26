@@ -65,7 +65,7 @@ Thanks for trying my challenge!
     }
   );
 
-  sessionStorage.getItem("/README.txt")
+  sessionStorage.getItem("/water.txt")
     ? null
     : sessionStorage.setItem(
         "/water.txt",

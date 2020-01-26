@@ -6,7 +6,13 @@ import classNames from "classnames";
 
 import { listFiles } from "./list-files";
 
+<<<<<<< HEAD
 import MarkdownPreviewer from "./MarkdownPreviewer";
+=======
+// import MarkdownEditor from "./MarkdownEditor";
+import MarkdownPreviewer from "./MarkdownPreviewer";
+// import PlaintextPreviewer from "./PlaintextPreviewer";
+>>>>>>> master
 import PlaintextEditor from "./PlaintextEditor";
 import JSPreviewer from "./JSPreviewer";
 import {
@@ -100,15 +106,6 @@ function Previewer({ file }) {
     );
   }
 
-  // if (file.type === "text/markdown") {
-  //   return (
-  //     <div className={css.preview}>
-  //       <div className={css.title}>{path.basename(file.name)}</div>
-  //       <MarkdownEditor file={file} value={value} />
-  //     </div>
-  //   );
-  // }
-  //
   if (file.type === "text/javascript") {
     useCodePenEmbed();
     return (
@@ -125,6 +122,16 @@ function Previewer({ file }) {
       >
         <PrefillLang lang="js">{value}</PrefillLang>
       </PrefillEmbed>
+
+  if (file.type === "text/markdown") {
+    return (
+      <div className={css.preview}>
+        <div className={css.title}>{path.basename(file.name)}</div>
+        <MarkdownPreviewer value={value} />
+        {
+          // <MarkdownEditor file={file} value={value} />
+        }
+      </div>
     );
   }
 
