@@ -8,6 +8,7 @@ import { listFiles } from "./list-files";
 
 // import MarkdownEditor from "./MarkdownEditor";
 import MarkdownPreviewer from "./MarkdownPreviewer";
+// import PlaintextPreviewer from "./PlaintextPreviewer";
 import PlaintextEditor from "./PlaintextEditor";
 
 import IconPlaintextSVG from "./assets/icon-plaintext.svg";
