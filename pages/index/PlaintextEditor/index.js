@@ -7,7 +7,10 @@ export default class PlaintextEditor extends React.Component {
     super(props);
     this.state = {
       loading: true,
-      value: sessionStorage.getItem(this.props.file.name) || this.props.value
+      updatedValue:
+        sessionStorage.getItem(this.props.file.name) || this.props.value,
+      unsavedValue:
+        sessionStorage.getItem(this.props.file.name) || this.props.value
     };
     this.saveFile = this.saveFile.bind(this);
   }
@@ -20,8 +23,12 @@ export default class PlaintextEditor extends React.Component {
     });
   }
 
+  togglePreview() {
+    this.setState({});
+  }
+
   saveFile() {
-    sessionStorage.setItem(this.props.file.name, this.state.value);
+    sessionStorage.setItem(this.props.file.name, this.state.updatedValue);
   }
 
   render() {
@@ -32,7 +39,7 @@ export default class PlaintextEditor extends React.Component {
           data={sessionStorage.getItem(this.props.file.name)}
           onChange={(event, editor) => {
             const data = editor.getData();
-            this.setState({ value: data });
+            this.setState({ updatedValue: data });
           }}
         />
         <button className={css.button} onClick={this.saveFile}>
