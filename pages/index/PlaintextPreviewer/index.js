@@ -34,7 +34,7 @@ export default class PlaintextComponent extends React.Component {
           file={this.props.file}
           value={this.props.value}
         >
-          {this.props.value}{" "}
+          {this.props.value}
         </div>
         <button className={css.button} onClick={this.loadEditor}>
           Edit
