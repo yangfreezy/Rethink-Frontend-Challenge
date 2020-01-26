@@ -6,7 +6,7 @@ import classNames from "classnames";
 
 import { listFiles } from "./list-files";
 
-import MarkdownEditor from "./MarkdownEditor";
+// import MarkdownEditor from "./MarkdownEditor";
 import PlaintextEditor from "./PlaintextEditor";
 
 import IconPlaintextSVG from "./assets/icon-plaintext.svg";
@@ -15,6 +15,7 @@ import IconJavaScriptSVG from "./assets/icon-javascript.svg";
 import IconJSONSVG from "./assets/icon-json.svg";
 
 import css from "./style.css";
+import "react-mde/lib/styles/css/react-mde-all.css";
 
 const TYPE_TO_ICON = {
   "text/plain": IconPlaintextSVG,
@@ -84,6 +85,24 @@ function Previewer({ file }) {
     })();
   }, [file]);
 
+  if (file.type === "text/plain") {
+    return (
+      <div className={css.preview}>
+        <div className={css.title}>{path.basename(file.name)}</div>
+        <PlaintextEditor file={file} value={value} />
+      </div>
+    );
+  }
+
+  // if (file.type === "text/markdown") {
+  //   return (
+  //     <div className={css.preview}>
+  //       <div className={css.title}>{path.basename(file.name)}</div>
+  //       <MarkdownEditor file={file} value={value} />
+  //     </div>
+  //   );
+  // }
+
   return (
     <div className={css.preview}>
       <div className={css.title}>{path.basename(file.name)}</div>
@@ -123,6 +142,10 @@ function PlaintextFilesChallenge() {
     <div className={css.page}>
       <Head>
         <title>Rethink Engineering Challenge</title>
+        <script
+          defer
+          src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"
+        ></script>
       </Head>
       <aside>
         <header>
