@@ -6,8 +6,8 @@ import classNames from "classnames";
 
 import { listFiles } from "./list-files";
 
-// import MarkdownEditor from "./MarkdownEditor";
-import MarkdownPreviewer from "./MarkdownPreviewer";
+import MarkdownEditor from "./MarkdownEditor";
+// import MarkdownPreviewer from "./MarkdownPreviewer";
 // import PlaintextPreviewer from "./PlaintextPreviewer";
 import PlaintextEditor from "./PlaintextEditor";
 
@@ -100,10 +100,10 @@ function Previewer({ file }) {
     return (
       <div className={css.preview}>
         <div className={css.title}>{path.basename(file.name)}</div>
-        <MarkdownPreviewer value={value} />
         {
-          // <MarkdownEditor file={file} value={value} />
+          // <MarkdownPreviewer value={value} />
         }
+        <MarkdownEditor file={file} value={value} />
       </div>
     );
   }
