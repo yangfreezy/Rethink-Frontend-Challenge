@@ -7,6 +7,7 @@ import classNames from "classnames";
 import { listFiles } from "./list-files";
 
 // import MarkdownEditor from "./MarkdownEditor";
+import MarkdownPreviewer from "./MarkdownPreviewer";
 import PlaintextEditor from "./PlaintextEditor";
 
 import IconPlaintextSVG from "./assets/icon-plaintext.svg";
@@ -94,14 +95,17 @@ function Previewer({ file }) {
     );
   }
 
-  // if (file.type === "text/markdown") {
-  //   return (
-  //     <div className={css.preview}>
-  //       <div className={css.title}>{path.basename(file.name)}</div>
-  //       <MarkdownEditor file={file} value={value} />
-  //     </div>
-  //   );
-  // }
+  if (file.type === "text/markdown") {
+    return (
+      <div className={css.preview}>
+        <div className={css.title}>{path.basename(file.name)}</div>
+        <MarkdownPreviewer value={value} />
+        {
+          // <MarkdownEditor file={file} value={value} />
+        }
+      </div>
+    );
+  }
 
   return (
     <div className={css.preview}>
