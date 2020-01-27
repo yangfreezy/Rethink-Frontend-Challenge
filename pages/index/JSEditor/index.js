@@ -32,19 +32,21 @@ export default class JSEditor extends Component {
   render() {
     return !this.state.preview ? (
       <div className={css.editor}>
-        <Editor
-          value={this.state.code}
-          onValueChange={code => this.setState({ code })}
-          highlight={code => highlight(code, languages.js)}
-          padding={20}
-          style={{
-            fontFamily: `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        <div className={css.codeEditor}>
+          <Editor
+            value={this.state.code}
+            onValueChange={code => this.setState({ code })}
+            highlight={code => highlight(code, languages.js)}
+            padding={20}
+            style={{
+              fontFamily: `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
               Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif`,
-            fontSize: 16,
-            width: 600,
-            border: 5
-          }}
-        />
+              fontSize: 16,
+              width: 600,
+              border: 5
+            }}
+          />
+        </div>
         <div className={css.buttonContainer}>
           <button className={css.button} onClick={this.togglePreview}>
             Back

@@ -1,3 +1,5 @@
+/* Works but the CSS isn't rendering for some reason, commenting out for now until the CSS works */
+
 // import React, { Component } from "react";
 // import ReactMde from "react-mde";
 // import PropTypes from "prop-types";

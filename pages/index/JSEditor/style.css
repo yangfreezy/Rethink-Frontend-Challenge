@@ -11,6 +11,12 @@
   white-space: pre-wrap;
 }
 
+.codeEditor {
+  -webkit-box-shadow: inset 1px 1px 9px -4px rgba(120, 120, 120, 1);
+  -moz-box-shadow: inset 1px 1px 9px -4px rgba(120, 120, 120, 1);
+  box-shadow: inset 1px 1px 9px -4px rgba(120, 120, 120, 1);
+}
+
 .buttonContainer {
   display: flex;
   flex-direction: row;
