@@ -37,9 +37,6 @@ export default class PlaintextEditor extends React.Component {
   render() {
     return this.CKEditor && !this.state.preview ? (
       <div className={css.editor}>
-        <button className={css.backButton} onClick={this.togglePreview}>
-          Back
-        </button>
         <this.CKEditor
           editor={this.ClassicEditor}
           data={sessionStorage.getItem(this.props.file.name)}
@@ -48,9 +45,14 @@ export default class PlaintextEditor extends React.Component {
             this.setState({ value: stripHtml(data) });
           }}
         />
-        <button className={css.button} onClick={this.saveFile}>
-          Save
-        </button>
+        <div className={css.buttonContainer}>
+          <button className={css.backButton} onClick={this.togglePreview}>
+            Back
+          </button>
+          <button className={css.button} onClick={this.saveFile}>
+            Save
+          </button>
+        </div>
       </div>
     ) : (
       <PlaintextPreviewer
