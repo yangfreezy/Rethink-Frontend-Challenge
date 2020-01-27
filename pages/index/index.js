@@ -9,11 +9,6 @@ import { listFiles } from "./list-files";
 import MarkdownPreviewer from "./MarkdownPreviewer";
 import PlaintextPreviewer from "./PlaintextPreviewer";
 import JSPreviewer from "./JSPreviewer";
-import {
-  PrefillEmbed,
-  PrefillLang,
-  useCodePenEmbed
-} from "react-codepen-prefill-embed";
 
 import IconPlaintextSVG from "./assets/icon-plaintext.svg";
 import IconMarkdownSVG from "./assets/icon-markdown.svg";
@@ -21,7 +16,6 @@ import IconJavaScriptSVG from "./assets/icon-javascript.svg";
 import IconJSONSVG from "./assets/icon-json.svg";
 
 import css from "./style.css";
-import "react-mde/lib/styles/css/react-mde-all.css";
 
 const TYPE_TO_ICON = {
   "text/plain": IconPlaintextSVG,
@@ -104,7 +98,15 @@ function Previewer({ file }) {
   }
 
   if (file.type === "text/javascript") {
-    return <JSPreviewer />;
+    return (
+      <div className={css.preview}>
+        <div className={css.title}>{path.basename(file.name)}</div>
+        <JSPreviewer
+          file={file}
+          value={sessionStorage.getItem(file.name) || value}
+        />
+      </div>
+    );
   }
 
   if (file.type === "text/markdown") {
