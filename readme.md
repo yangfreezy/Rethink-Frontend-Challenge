@@ -1,6 +1,12 @@
 # Yang's Rethink Plaintext Editing Challenge
 
+Had a lot of fun doing this challenge by Rethink software's engineer team. 
 
+Implemented a few features to make using plain text files a little more hype.
+
+Rethink Software is located in Venice, CA.
+
+http://rethink.software/
 
 ***Original Readme***
 
