@@ -36,7 +36,9 @@ export default class PlaintextEditor extends React.Component {
       <div className={css.editor}>
         <this.CKEditor
           editor={this.ClassicEditor}
-          data={sessionStorage.getItem(this.props.file.name)}
+          data={
+            sessionStorage.getItem(this.props.file.name) || this.props.value
+          }
           onChange={(event, editor) => {
             const data = editor.getData();
             this.setState({ value: stripHtml(data) });

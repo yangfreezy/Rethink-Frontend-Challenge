@@ -85,7 +85,7 @@ function Previewer({ file }) {
     })();
   }, [file]);
 
-  if (file.type === "text/plain") {
+  if (file.type === "text/plain" || file.type === "application/json") {
     return (
       <div className={css.preview}>
         <div className={css.title}>{path.basename(file.name)}</div>

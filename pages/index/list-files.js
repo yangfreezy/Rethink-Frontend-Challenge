@@ -150,5 +150,16 @@ export default initialValue => {
     }
   );
 
+  sessionStorage.getItem("/document.json")
+    ? null
+    : sessionStorage.setItem(
+        "/document.json",
+        `{
+      "name" : "Admin",
+      "email" : "admin@neptune.com",
+      "rights" : [ "admin", "editor", "contributor" ]
+  }`
+      );
+
   return [guide, plain, water, fancy, javascript, json];
 }
