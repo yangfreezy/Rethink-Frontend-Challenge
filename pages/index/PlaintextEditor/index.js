@@ -1,46 +1,63 @@
 import React from "react";
 import PropTypes from "prop-types";
+import stripHtml from "string-strip-html";
+
 import css from "./style.css";
+
+import PlaintextPreviewer from "../PlaintextPreviewer";
 
 export default class PlaintextEditor extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: true,
-      value: sessionStorage.getItem(this.props.file.name) || this.props.value
+      value: sessionStorage.getItem(this.props.file.name) || this.props.value,
+      preview: false
     };
     this.saveFile = this.saveFile.bind(this);
+    this.togglePreview = this.togglePreview.bind(this);
   }
 
   componentDidMount() {
     this.CKEditor = require("@ckeditor/ckeditor5-react");
     this.ClassicEditor = require("@ckeditor/ckeditor5-build-classic");
-    this.setState({
-      loading: false
-    });
   }
 
   saveFile() {
     sessionStorage.setItem(this.props.file.name, this.state.value);
+    this.togglePreview();
+  }
+
+  togglePreview() {
+    this.setState({ preview: true });
   }
 
   render() {
-    return this.CKEditor ? (
+    return this.CKEditor && !this.state.preview ? (
       <div className={css.editor}>
         <this.CKEditor
           editor={this.ClassicEditor}
-          data={sessionStorage.getItem(this.props.file.name)}
+          data={
+            sessionStorage.getItem(this.props.file.name) || this.props.value
+          }
           onChange={(event, editor) => {
             const data = editor.getData();
-            this.setState({ value: data });
+            this.setState({ value: stripHtml(data) });
           }}
         />
-        <button className={css.button} onClick={this.saveFile}>
-          Save
-        </button>
+        <div className={css.buttonContainer}>
+          <button className={css.button} onClick={this.togglePreview}>
+            Back
+          </button>
+          <button className={css.button} onClick={this.saveFile}>
+            Save
+          </button>
+        </div>
       </div>
     ) : (
-      <div className={css.editor}> Loading editor ...</div>
+      <PlaintextPreviewer
+        file={this.props.file}
+        value={stripHtml(this.state.value)}
+      />
     );
   }
 }

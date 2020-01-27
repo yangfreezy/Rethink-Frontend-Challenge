@@ -6,10 +6,9 @@ import classNames from "classnames";
 
 import { listFiles } from "./list-files";
 
-// import MarkdownEditor from "./MarkdownEditor";
 import MarkdownPreviewer from "./MarkdownPreviewer";
-// import PlaintextPreviewer from "./PlaintextPreviewer";
-import PlaintextEditor from "./PlaintextEditor";
+import PlaintextPreviewer from "./PlaintextPreviewer";
+import JSPreviewer from "./JSPreviewer";
 
 import IconPlaintextSVG from "./assets/icon-plaintext.svg";
 import IconMarkdownSVG from "./assets/icon-markdown.svg";
@@ -17,7 +16,6 @@ import IconJavaScriptSVG from "./assets/icon-javascript.svg";
 import IconJSONSVG from "./assets/icon-json.svg";
 
 import css from "./style.css";
-import "react-mde/lib/styles/css/react-mde-all.css";
 
 const TYPE_TO_ICON = {
   "text/plain": IconPlaintextSVG,
@@ -87,11 +85,26 @@ function Previewer({ file }) {
     })();
   }, [file]);
 
-  if (file.type === "text/plain") {
+  if (file.type === "text/plain" || file.type === "application/json") {
     return (
       <div className={css.preview}>
         <div className={css.title}>{path.basename(file.name)}</div>
-        <PlaintextEditor file={file} value={value} />
+        <PlaintextPreviewer
+          file={file}
+          value={sessionStorage.getItem(file.name) || value}
+        />
+      </div>
+    );
+  }
+
+  if (file.type === "text/javascript") {
+    return (
+      <div className={css.preview}>
+        <div className={css.title}>{path.basename(file.name)}</div>
+        <JSPreviewer
+          file={file}
+          value={sessionStorage.getItem(file.name) || value}
+        />
       </div>
     );
   }
@@ -100,10 +113,7 @@ function Previewer({ file }) {
     return (
       <div className={css.preview}>
         <div className={css.title}>{path.basename(file.name)}</div>
-        <MarkdownPreviewer value={value} />
-        {
-          // <MarkdownEditor file={file} value={value} />
-        }
+        <MarkdownPreviewer value={sessionStorage.getItem(file.name) || value} />
       </div>
     );
   }
@@ -111,7 +121,9 @@ function Previewer({ file }) {
   return (
     <div className={css.preview}>
       <div className={css.title}>{path.basename(file.name)}</div>
-      <div className={css.content}>{value}</div>
+      <div className={css.content}>
+        {sessionStorage.getItem(file.name) || value}
+      </div>
     </div>
   );
 }
@@ -121,10 +133,7 @@ Previewer.propTypes = {
 };
 
 // Uncomment keys to register editors for media types
-const REGISTERED_EDITORS = {
-  // "text/plain": PlaintextEditor,
-  // "text/markdown": MarkdownEditor,
-};
+const REGISTERED_EDITORS = {};
 
 function PlaintextFilesChallenge() {
   const [files, setFiles] = useState([]);

@@ -36,7 +36,7 @@
 //
 //   render() {
 //     return (
-//       <div className={css.container}>
+//       <div className={css.editor}>
 //         <ReactMde
 //           layout="horizontal"
 //           onChange={this.handleValueChange}
