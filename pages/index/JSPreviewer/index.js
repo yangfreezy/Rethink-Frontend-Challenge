@@ -1,30 +1,37 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import Editor from "react-simple-code-editor";
-import { highlight, languages } from "prismjs/components/prism-core";
-import "prismjs/components/prism-clike";
-import "prismjs/components/prism-javascript";
+import JSEditor from "../JSEditor";
+
+import css from "./style.css";
 
 export default class JSPreviewer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      code: this.props.value
+      editor: false,
+      code: sessionStorage.getItem(this.props.file.name) || this.props.value
     };
+    this.loadEditor = this.loadEditor.bind(this);
+  }
+
+  loadEditor() {
+    this.setState({ editor: true });
   }
 
   render() {
-    return (
-      <Editor
-        value={this.state.code}
-        onValueChange={code => this.setState({ code })}
-        highlight={code => highlight(code, languages.js)}
-        padding={20}
-        style={{
-          fontFamily: '"Fira code", "Fira Mono", monospace',
-          fontSize: 12
-        }}
-      />
+    return !this.state.editor ? (
+      <div className={css.editor}>
+        <div className={css.container}>
+          <div>
+            {sessionStorage.getItem(this.props.file.name) || this.props.value}
+          </div>
+          <button className={css.button} onClick={this.loadEditor}>
+            Edit
+          </button>
+        </div>
+      </div>
+    ) : (
+      <JSEditor file={this.props.file} value={this.state.value} />
     );
   }
 }

@@ -10,7 +10,6 @@ export default class PlaintextEditor extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: true,
       value: sessionStorage.getItem(this.props.file.name) || this.props.value,
       preview: false
     };
@@ -21,9 +20,6 @@ export default class PlaintextEditor extends React.Component {
   componentDidMount() {
     this.CKEditor = require("@ckeditor/ckeditor5-react");
     this.ClassicEditor = require("@ckeditor/ckeditor5-build-classic");
-    this.setState({
-      loading: false
-    });
   }
 
   saveFile() {
