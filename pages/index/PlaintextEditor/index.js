@@ -24,6 +24,7 @@ export default class PlaintextEditor extends React.Component {
 
   saveFile() {
     sessionStorage.setItem(this.props.file.name, this.state.value);
+    this.togglePreview();
   }
 
   togglePreview() {
@@ -42,7 +43,7 @@ export default class PlaintextEditor extends React.Component {
           }}
         />
         <div className={css.buttonContainer}>
-          <button className={css.backButton} onClick={this.togglePreview}>
+          <button className={css.button} onClick={this.togglePreview}>
             Back
           </button>
           <button className={css.button} onClick={this.saveFile}>

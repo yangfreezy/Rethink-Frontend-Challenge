@@ -1,9 +1,3 @@
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .editor {
   width: 640px;
   background-color: var(--color-white);
@@ -14,6 +8,15 @@
   justify-content: center;
   font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier,
     monospace;
+  white-space: pre-wrap;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 25px;
+  margin-bottom: 25px;
 }
 
 .button {
@@ -23,15 +26,28 @@
   border: none;
   color: white;
   padding: 14px 36px;
-  text-align: center;
   text-decoration: none;
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 16px;
   margin-top: 24px;
   margin-bottom: 8px;
+  margin-left: 30px;
+  margin-right: 30px;
   width: 110px;
 }
 
 .button:hover {
   box-shadow: 0 2px 16px hsla(0, 0%, 0%, 0.16);
+}
+.button:focus {
+  outline: none;
+}
+
+.backButton:hover {
+  box-shadow: 0 2px 16px hsla(0, 0%, 0%, 0.16);
+}
+.backButton:focus {
+  outline: none;
 }

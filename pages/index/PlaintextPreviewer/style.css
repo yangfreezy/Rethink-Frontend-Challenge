@@ -1,9 +1,3 @@
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .editor {
   width: 640px;
   background-color: var(--color-white);
@@ -14,6 +8,7 @@
   justify-content: center;
   font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier,
     monospace;
+  white-space: pre-wrap;
 }
 
 .button {

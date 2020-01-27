@@ -21,14 +21,12 @@ export default class JSPreviewer extends Component {
   render() {
     return !this.state.editor ? (
       <div className={css.editor}>
-        <div className={css.container}>
-          <div>
-            {sessionStorage.getItem(this.props.file.name) || this.props.value}
-          </div>
-          <button className={css.button} onClick={this.loadEditor}>
-            Edit
-          </button>
+        <div>
+          {sessionStorage.getItem(this.props.file.name) || this.props.value}
         </div>
+        <button className={css.button} onClick={this.loadEditor}>
+          Edit
+        </button>
       </div>
     ) : (
       <JSEditor file={this.props.file} value={this.state.value} />

@@ -28,10 +28,8 @@ export default class PlaintextComponent extends Component {
   render() {
     return !this.state.editor ? (
       <div className={css.editor}>
-        <div className={css.container}>
-          <div>
-            {sessionStorage.getItem(this.props.file.name) || this.props.value}
-          </div>
+        <div>
+          {sessionStorage.getItem(this.props.file.name) || this.props.value}
         </div>
         <button className={css.button} onClick={this.loadEditor}>
           Edit

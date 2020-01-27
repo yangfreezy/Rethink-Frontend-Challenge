@@ -26,33 +26,32 @@ export default class JSEditor extends Component {
 
   saveFile() {
     sessionStorage.setItem(this.props.file.name, this.state.code);
+    this.togglePreview();
   }
 
   render() {
     return !this.state.preview ? (
       <div className={css.editor}>
-        <div className={css.container}>
-          <Editor
-            value={this.state.code}
-            onValueChange={code => this.setState({ code })}
-            highlight={code => highlight(code, languages.js)}
-            padding={20}
-            style={{
-              fontFamily: `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        <Editor
+          value={this.state.code}
+          onValueChange={code => this.setState({ code })}
+          highlight={code => highlight(code, languages.js)}
+          padding={20}
+          style={{
+            fontFamily: `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
               Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif`,
-              fontSize: 16,
-              width: 600,
-              border: 5
-            }}
-          />
-          <div className={css.buttonContainer}>
-            <button className={css.backButton} onClick={this.togglePreview}>
-              Back
-            </button>
-            <button className={css.button} onClick={this.saveFile}>
-              Save
-            </button>
-          </div>
+            fontSize: 16,
+            width: 600,
+            border: 5
+          }}
+        />
+        <div className={css.buttonContainer}>
+          <button className={css.button} onClick={this.togglePreview}>
+            Back
+          </button>
+          <button className={css.button} onClick={this.saveFile}>
+            Save
+          </button>
         </div>
       </div>
     ) : (

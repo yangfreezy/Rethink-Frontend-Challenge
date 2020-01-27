@@ -14,6 +14,7 @@
   justify-content: center;
   font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier,
     monospace;
+  white-space: pre-wrap;
 }
 
 .button {
