@@ -1,17 +1,12 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import {
-  PrefillEmbed,
-  PrefillLang,
-  useCodePenEmbed
-} from "react-codepen-prefill-embed";
+import { PrefillEmbed, PrefillLang } from "react-codepen-prefill-embed";
 
 export default class JSPreviewer extends Component {
   constructor(props) {
     super(props);
   }
   render() {
-    useCodePenEmbed();
     return (
       <PrefillEmbed
         embedHeight="600"

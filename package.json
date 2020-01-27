@@ -9,10 +9,11 @@
     "lodash": "^4.17.15",
     "marked": "^0.8.0",
     "next": "^9.1.7",
-    "react": "^16.12.0",
+    "react": "16.12.0",
     "react-codepen-prefill-embed": "0.0.2",
-    "react-dom": "^16.12.0",
-    "showdown": "^1.9.1"
+    "react-dom": "16.12.0",
+    "showdown": "^1.9.1",
+    "string-strip-html": "^4.3.15"
   },
   "devDependencies": {
     "@ckeditor/ckeditor5-build-classic": "^16.0.0",
@@ -45,5 +46,13 @@
     "rules": {
       "no-console": 0
     }
+  },
+  "resolutions": {
+    "**/react": "16.12.0",
+    "**/react-dom": "16.12.0"
+  },
+  "alias": {
+    "react": "./node_modules/react",
+    "react-dom": "./node_modules/react-dom"
   }
 }

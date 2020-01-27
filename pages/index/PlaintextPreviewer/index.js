@@ -1,9 +1,10 @@
-import React from "react";
+import React, { Component, useEffect } from "react";
+import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 import css from "./style.css";
 import PlaintextEditor from "./../PlaintextEditor";
 
-export default class PlaintextComponent extends React.Component {
+export default class PlaintextComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -18,7 +19,8 @@ export default class PlaintextComponent extends React.Component {
     this.CKEditor = require("@ckeditor/ckeditor5-react");
     this.ClassicEditor = require("@ckeditor/ckeditor5-build-classic");
     this.setState({
-      loading: false
+      loading: false,
+      editor: false
     });
   }
   loadEditor() {
@@ -32,9 +34,11 @@ export default class PlaintextComponent extends React.Component {
         <div
           className={"editor"}
           file={this.props.file}
-          value={this.props.value}
+          value={
+            sessionStorage.getItem(this.props.file.name) || this.props.value
+          }
         >
-          {this.props.value}
+          {sessionStorage.getItem(this.props.file.name) || this.props.value}
         </div>
         <button className={css.button} onClick={this.loadEditor}>
           Edit
@@ -48,5 +52,6 @@ export default class PlaintextComponent extends React.Component {
 
 PlaintextComponent.propTypes = {
   file: PropTypes.object,
-  value: PropTypes.string
+  value: PropTypes.string,
+  children: PropTypes.array
 };

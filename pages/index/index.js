@@ -7,7 +7,7 @@ import classNames from "classnames";
 import { listFiles } from "./list-files";
 
 import MarkdownPreviewer from "./MarkdownPreviewer";
-import PlaintextEditor from "./PlaintextEditor";
+import PlaintextPreviewer from "./PlaintextPreviewer";
 import JSPreviewer from "./JSPreviewer";
 import {
   PrefillEmbed,
@@ -95,35 +95,23 @@ function Previewer({ file }) {
     return (
       <div className={css.preview}>
         <div className={css.title}>{path.basename(file.name)}</div>
-        <PlaintextEditor file={file} value={value} />
+        <PlaintextPreviewer
+          file={file}
+          value={sessionStorage.getItem(file.name) || value}
+        />
       </div>
     );
   }
 
   if (file.type === "text/javascript") {
-    useCodePenEmbed();
-    return (
-      <PrefillEmbed
-        embedHeight="600"
-        themeId="31205"
-        editable
-        defaultTabs={["js"]}
-        scripts={[
-          "https://unpkg.com/react@16.8.6/umd/react.development.js",
-          "https://unpkg.com/react-dom@16.8.6/umd/react-dom.development.js"
-        ]}
-        stylesheets={["https://unpkg.com/normalize.css@8.0.1/normalize.css"]}
-      >
-        <PrefillLang lang="js">{value}</PrefillLang>
-      </PrefillEmbed>
-    );
+    return <JSPreviewer />;
   }
 
   if (file.type === "text/markdown") {
     return (
       <div className={css.preview}>
         <div className={css.title}>{path.basename(file.name)}</div>
-        <MarkdownPreviewer value={value} />
+        <MarkdownPreviewer value={sessionStorage.getItem(file.name) || value} />
       </div>
     );
   }
@@ -131,7 +119,9 @@ function Previewer({ file }) {
   return (
     <div className={css.preview}>
       <div className={css.title}>{path.basename(file.name)}</div>
-      <div className={css.content}>{value}</div>
+      <div className={css.content}>
+        {sessionStorage.getItem(file.name) || value}
+      </div>
     </div>
   );
 }
@@ -141,11 +131,7 @@ Previewer.propTypes = {
 };
 
 // Uncomment keys to register editors for media types
-const REGISTERED_EDITORS = {
-  "text/plain": PlaintextEditor,
-  "text/markdown": MarkdownPreviewer,
-  "text/javascript": JSPreviewer
-};
+const REGISTERED_EDITORS = {};
 
 function PlaintextFilesChallenge() {
   const [files, setFiles] = useState([]);
