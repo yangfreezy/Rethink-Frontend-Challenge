@@ -11,26 +11,23 @@
   white-space: pre-wrap;
 }
 
-.backButton {
-  background-color: #000a41;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-  border: none;
-  color: white;
-  padding: 14px 36px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin-top: 8px;
-  margin-bottom: 24px;
-  width: 110px;
+.codeEditor {
+  -webkit-box-shadow: inset 1px 1px 9px -4px rgba(120, 120, 120, 1);
+  -moz-box-shadow: inset 1px 1px 9px -4px rgba(120, 120, 120, 1);
+  box-shadow: inset 1px 1px 9px -4px rgba(120, 120, 120, 1);
 }
 
 .buttonContainer {
-  dislay: flex;
+  display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .buttonContainer > * {
@@ -47,7 +44,11 @@
     Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   border: none;
   color: white;
-  padding: 14px 36px;
+  padding: 14px 36px 14px 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -61,12 +62,5 @@
   box-shadow: 0 2px 16px hsla(0, 0%, 0%, 0.16);
 }
 .button:focus {
-  outline: none;
-}
-
-.backButton:hover {
-  box-shadow: 0 2px 16px hsla(0, 0%, 0%, 0.16);
-}
-.backButton:focus {
   outline: none;
 }

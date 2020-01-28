@@ -2,9 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import stripHtml from "string-strip-html";
 
-import css from "./style.css";
-
 import PlaintextPreviewer from "../PlaintextPreviewer";
+
+import css from "./../style.css";
 
 export default class PlaintextEditor extends React.Component {
   constructor(props) {

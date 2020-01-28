@@ -6,9 +6,11 @@ import classNames from "classnames";
 
 import { listFiles } from "./list-files";
 
-import MarkdownPreviewer from "./MarkdownPreviewer";
-import PlaintextPreviewer from "./PlaintextPreviewer";
-import JSPreviewer from "./JSPreviewer";
+import {
+  MarkdownPreviewer,
+  PlaintextPreviewer,
+  JSPreviewer
+} from "./Components/index";
 
 import IconPlaintextSVG from "./assets/icon-plaintext.svg";
 import IconMarkdownSVG from "./assets/icon-markdown.svg";

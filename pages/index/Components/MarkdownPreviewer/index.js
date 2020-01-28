@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import marked from "marked";
 import PropTypes from "prop-types";
-import css from "./style.css";
+
+import css from "./../style.css";
 
 export default class MarkdownPreviewer extends Component {
   constructor(props) {

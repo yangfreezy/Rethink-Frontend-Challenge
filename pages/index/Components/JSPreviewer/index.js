@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+
 import JSEditor from "../JSEditor";
 
-import css from "./style.css";
+import css from "./../style.css";
 
 export default class JSPreviewer extends Component {
   constructor(props) {

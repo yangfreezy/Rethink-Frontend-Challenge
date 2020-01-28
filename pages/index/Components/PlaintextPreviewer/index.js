@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import css from "./style.css";
+
 import PlaintextEditor from "./../PlaintextEditor";
+
+import css from "./../style.css";
 
 export default class PlaintextComponent extends Component {
   constructor(props) {
