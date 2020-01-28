@@ -105,7 +105,7 @@ const REGISTERED_PREVIEWERS = {
   "text/markdown": MarkdownPreviewer,
   "text/plain": PlaintextPreviewer,
   "text/javascript": JSPreviewer,
-  "application/json": PlaintextPreviewer
+  "application/json": JSPreviewer
 };
 
 function PlaintextFilesChallenge() {
