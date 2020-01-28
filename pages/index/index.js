@@ -87,39 +87,6 @@ function Previewer({ file }) {
     })();
   }, [file]);
 
-  if (file.type === "text/plain" || file.type === "application/json") {
-    return (
-      <div className={css.preview}>
-        <div className={css.title}>{path.basename(file.name)}</div>
-        <PlaintextPreviewer
-          file={file}
-          value={sessionStorage.getItem(file.name) || value}
-        />
-      </div>
-    );
-  }
-
-  if (file.type === "text/javascript") {
-    return (
-      <div className={css.preview}>
-        <div className={css.title}>{path.basename(file.name)}</div>
-        <JSPreviewer
-          file={file}
-          value={sessionStorage.getItem(file.name) || value}
-        />
-      </div>
-    );
-  }
-
-  if (file.type === "text/markdown") {
-    return (
-      <div className={css.preview}>
-        <div className={css.title}>{path.basename(file.name)}</div>
-        <MarkdownPreviewer value={sessionStorage.getItem(file.name) || value} />
-      </div>
-    );
-  }
-
   return (
     <div className={css.preview}>
       <div className={css.title}>{path.basename(file.name)}</div>
@@ -134,8 +101,12 @@ Previewer.propTypes = {
   file: PropTypes.object
 };
 
-// Uncomment keys to register editors for media types
-const REGISTERED_EDITORS = {};
+const REGISTERED_PREVIEWERS = {
+  "text/markdown": MarkdownPreviewer,
+  "text/plain": PlaintextPreviewer,
+  "text/javascript": JSPreviewer,
+  "application/json": PlaintextPreviewer
+};
 
 function PlaintextFilesChallenge() {
   const [files, setFiles] = useState([]);
@@ -146,13 +117,7 @@ function PlaintextFilesChallenge() {
     setFiles(files);
   }, []);
 
-  const write = file => {
-    console.log("Writing... ", file.name);
-
-    // TODO: Write the file to the `files` array in state
-  };
-
-  const Editor = activeFile ? REGISTERED_EDITORS[activeFile.type] : null;
+  const Previewer = activeFile ? REGISTERED_PREVIEWERS[activeFile.type] : null;
 
   return (
     <div className={css.page}>
@@ -196,8 +161,17 @@ function PlaintextFilesChallenge() {
       <main className={css.editorWindow}>
         {activeFile && (
           <>
-            {Editor && <Editor file={activeFile} write={write} />}
-            {!Editor && <Previewer file={activeFile} />}
+            {Previewer && (
+              <div className={css.preview}>
+                <div className={css.title}>
+                  {path.basename(activeFile.name)}
+                </div>
+                <Previewer
+                  file={activeFile}
+                  value={sessionStorage.getItem(activeFile.name)}
+                />
+              </div>
+            )}
           </>
         )}
 

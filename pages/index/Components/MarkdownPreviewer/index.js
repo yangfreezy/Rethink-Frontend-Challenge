@@ -22,7 +22,7 @@ export default class MarkdownPreviewer extends Component {
       <div className={css.editor}>
         {!this.state.preview ? (
           <div className={css.container}>
-            <div> {this.props.value} </div>
+            <div>{sessionStorage.getItem(this.props.file.name)}</div>
             <button className={css.button} onClick={this.togglePreview}>
               Preview
             </button>
@@ -43,5 +43,6 @@ export default class MarkdownPreviewer extends Component {
 }
 
 MarkdownPreviewer.propTypes = {
-  value: PropTypes.string
+  value: PropTypes.string,
+  file: PropTypes.object
 };

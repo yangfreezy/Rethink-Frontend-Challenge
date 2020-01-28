@@ -94,10 +94,48 @@ export default initialValue => {
 
   const files = [guide, plain, water, fancy, javascript, json];
 
+  const fileData = {
+    "/README.txt": `The objective is to make this application better in a perceptible way. Features this application has had include a text editor, markdown or code previews, and even file changes persisting through reloads.
+
+Install any npm packages you'd like.
+
+This is designed for creative freedom.
+
+Once complete, email me a repo link at will@rethink.software.
+
+Thanks for trying my challenge!
+
+- Will
+`,
+    "/plain.txt": "Just some text looking for an editor",
+    "/water.txt":
+      "Increasing water scarcity is an extremely dangerous symptom of a warming planet. The World Health Organization estimates that half of the global population will live in water-stressed areas by 2025. In 2008, the CEO of DOW Chemical said, “Water is the oil of the 21st century.” There have been 9 major conflicts over oil since 1932. While many still take it for granted today, I suspect water will be a significant source of armed conflict in coming decades.",
+    "/fancy.md": `# Some Markdown
+
+The *quick* brown fox, jumped **over** the lazy [dog](https://en.wikipedia.org/wiki/Dog).`,
+    "/use-ref-state.js": `import { useState, useRef, useEffect } from 'react';
+
+// From: https://blog.castiel.me/posts/2019-02-19-react-hooks-get-current-state-back-to-the-future/
+
+export default initialValue => {
+const [state, setState] = useState(initialValue);
+const stateRef = useRef(state);
+useEffect(() => {
+  stateRef.current = state;
+}, [state]);
+return [state, stateRef, setState];
+};`,
+    "/document.json": `{
+"name" : "Admin",
+"email" : "admin@neptune.com",
+"rights" : [ "admin", "editor", "contributor" ]
+}`
+  };
+
   files.map(file => {
     sessionStorage.getItem(file.name)
       ? null
-      : sessionStorage.setItem(file.name, file.data);
+      : sessionStorage.setItem(file.name, fileData[file.name]);
   });
 
   return [guide, plain, water, fancy, javascript, json];
