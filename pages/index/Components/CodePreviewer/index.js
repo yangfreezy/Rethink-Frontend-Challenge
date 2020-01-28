@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import JSEditor from "../JSEditor";
+import CodeEditor from "../CodeEditor";
 
 import css from "./../style.css";
 
-export default class JSPreviewer extends Component {
+export default class CodePreviewer extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -30,12 +30,12 @@ export default class JSPreviewer extends Component {
         </button>
       </div>
     ) : (
-      <JSEditor file={this.props.file} value={this.state.value} />
+      <CodeEditor file={this.props.file} value={this.state.value} />
     );
   }
 }
 
-JSPreviewer.propTypes = {
+CodePreviewer.propTypes = {
   value: PropTypes.string,
   file: PropTypes.object
 };

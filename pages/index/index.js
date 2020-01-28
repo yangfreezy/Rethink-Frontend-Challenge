@@ -9,7 +9,7 @@ import { listFiles } from "./list-files";
 import {
   MarkdownPreviewer,
   PlaintextPreviewer,
-  JSPreviewer
+  CodePreviewer
 } from "./Components/index";
 
 import IconPlaintextSVG from "./assets/icon-plaintext.svg";
@@ -104,8 +104,8 @@ Previewer.propTypes = {
 const REGISTERED_PREVIEWERS = {
   "text/markdown": MarkdownPreviewer,
   "text/plain": PlaintextPreviewer,
-  "text/javascript": JSPreviewer,
-  "application/json": JSPreviewer
+  "text/javascript": CodePreviewer,
+  "application/json": CodePreviewer
 };
 
 function PlaintextFilesChallenge() {

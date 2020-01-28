@@ -6,11 +6,11 @@ import "prismjs/components/prism-clike";
 import "prismjs/components/prism-javascript";
 import "prismjs/components/prism-json";
 
-import JSPreviewer from "../JSPreviewer";
+import CodePreviewer from "../CodePreviewer";
 
 import css from "./../style.css";
 
-export default class JSEditor extends Component {
+export default class CodeEditor extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -40,8 +40,9 @@ export default class JSEditor extends Component {
             highlight={code => highlight(code, languages.js)}
             padding={20}
             style={{
-              fontFamily: `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-              Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif`,
+              color: `#000a41`,
+              fontFamily: `SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier,
+                monospace`,
               fontSize: 16,
               width: 600,
               border: 5
@@ -58,12 +59,12 @@ export default class JSEditor extends Component {
         </div>
       </div>
     ) : (
-      <JSPreviewer file={this.props.file} value={this.state.value} />
+      <CodePreviewer file={this.props.file} value={this.state.value} />
     );
   }
 }
 
-JSEditor.propTypes = {
+CodeEditor.propTypes = {
   value: PropTypes.string,
   file: PropTypes.object
 };
