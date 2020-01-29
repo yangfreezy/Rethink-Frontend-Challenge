@@ -15,9 +15,5 @@ module.exports = pipe(withCSS)({
     });
 
     return config;
-  },
-  babel: config => {
-    config.presets = ["@babel/preset-env", "@babel/preset-react"];
-    return config;
   }
 });

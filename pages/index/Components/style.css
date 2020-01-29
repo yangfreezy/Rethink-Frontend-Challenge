@@ -10,6 +10,8 @@
     monospace;
   color: #000a41;
   white-space: pre-wrap;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
 .previewContainer {

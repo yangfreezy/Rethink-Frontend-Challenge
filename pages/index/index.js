@@ -44,7 +44,9 @@ function FilesTable({ files, activeFile, setActiveFile }) {
                 css.row,
                 activeFile && activeFile.name === file.name ? css.active : ""
               )}
-              onClick={() => setActiveFile(file)}
+              onClick={() => {
+                setActiveFile(file);
+              }}
             >
               <td className={css.file}>
                 <div
@@ -168,7 +170,9 @@ function PlaintextFilesChallenge() {
                 </div>
                 <Previewer
                   file={activeFile}
-                  value={sessionStorage.getItem(activeFile.name)}
+                  value={
+                    sessionStorage.getItem(activeFile.name) || activeFile.value
+                  }
                 />
               </div>
             )}

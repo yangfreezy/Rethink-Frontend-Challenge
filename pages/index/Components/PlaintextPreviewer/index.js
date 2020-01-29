@@ -45,6 +45,5 @@ export default class PlaintextComponent extends Component {
 
 PlaintextComponent.propTypes = {
   file: PropTypes.object,
-  value: PropTypes.string,
-  children: PropTypes.array
+  value: PropTypes.string
 };

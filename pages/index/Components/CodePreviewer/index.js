@@ -22,7 +22,7 @@ export default class CodePreviewer extends Component {
   render() {
     return !this.state.editor ? (
       <div className={css.editor}>
-        <div>
+        <div className={css.previewContainer}>
           {sessionStorage.getItem(this.props.file.name) || this.props.value}
         </div>
         <button className={css.button} onClick={this.loadEditor}>
