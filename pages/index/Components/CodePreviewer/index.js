@@ -1,41 +1,33 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 
 import CodeEditor from "../CodeEditor";
 
 import css from "./../style.css";
 
-export default class CodePreviewer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      editor: false,
-      code: sessionStorage.getItem(this.props.file.name) || this.props.value
-    };
-    this.loadEditor = this.loadEditor.bind(this);
-  }
+const CodePreviewer = props => {
+  const [editor, setEditor] = useState(false);
+  const code = sessionStorage.getItem(props.file.name) || props.value;
 
-  loadEditor() {
-    this.setState({ editor: true });
-  }
+  const loadEditor = () => {
+    setEditor(true);
+  };
 
-  render() {
-    return !this.state.editor ? (
-      <div className={css.editor}>
-        <div className={css.previewContainer}>
-          {sessionStorage.getItem(this.props.file.name) || this.props.value}
-        </div>
-        <button className={css.button} onClick={this.loadEditor}>
-          Edit
-        </button>
-      </div>
-    ) : (
-      <CodeEditor file={this.props.file} value={this.state.value} />
-    );
-  }
-}
+  return !editor ? (
+    <div className={css.editor}>
+      <div className={css.previewContainer}>{code}</div>
+      <button className={css.button} onClick={loadEditor}>
+        Edit
+      </button>
+    </div>
+  ) : (
+    <CodeEditor file={props.file} value={code} />
+  );
+};
 
 CodePreviewer.propTypes = {
   value: PropTypes.string,
   file: PropTypes.object
 };
+
+export default CodePreviewer;

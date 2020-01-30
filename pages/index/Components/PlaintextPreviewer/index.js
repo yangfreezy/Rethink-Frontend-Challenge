@@ -1,49 +1,29 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 
 import PlaintextEditor from "./../PlaintextEditor";
 
 import css from "./../style.css";
 
-export default class PlaintextComponent extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: sessionStorage.getItem(this.props.file.name) || this.props.value,
-      editor: false
-    };
-    this.loadEditor = this.loadEditor.bind(this);
-  }
+const PlaintextPreviewer = props => {
+  const [editor, setEditor] = useState(false);
+  const value = sessionStorage.getItem(props.file.name) || props.value;
 
-  componentDidMount() {
-    this.CKEditor = require("@ckeditor/ckeditor5-react");
-    this.ClassicEditor = require("@ckeditor/ckeditor5-build-classic");
-    this.setState({
-      editor: false
-    });
-  }
-  async loadEditor() {
-    await this.setState({ editor: true });
-    this.forceUpdate();
-  }
+  return !editor ? (
+    <div className={css.editor}>
+      <div className={css.previewContainer}>{value}</div>
+      <button className={css.button} onClick={setEditor.bind(this, true)}>
+        Edit
+      </button>
+    </div>
+  ) : (
+    <PlaintextEditor file={props.file} value={value} />
+  );
+};
 
-  render() {
-    return !this.state.editor ? (
-      <div className={css.editor}>
-        <div className={css.previewContainer}>
-          {sessionStorage.getItem(this.props.file.name) || this.props.value}
-        </div>
-        <button className={css.button} onClick={this.loadEditor}>
-          Edit
-        </button>
-      </div>
-    ) : (
-      <PlaintextEditor file={this.props.file} value={this.state.value} />
-    );
-  }
-}
-
-PlaintextComponent.propTypes = {
+PlaintextPreviewer.propTypes = {
   file: PropTypes.object,
   value: PropTypes.string
 };
+
+export default PlaintextPreviewer;
