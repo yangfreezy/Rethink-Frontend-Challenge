@@ -19,6 +19,7 @@ const PlainEditor = props => {
   }, [props.file.name]);
 
   const loadEditor = () => {
+    setCode(sessionStorage.getItem(props.file.name));
     setEditor(true);
   };
 
