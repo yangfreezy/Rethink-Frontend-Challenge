@@ -6,7 +6,7 @@ import classNames from "classnames";
 
 import { listFiles } from "./list-files";
 
-import { PlainEditor, MarkdownPreviewer } from "./Components/index";
+import { MarkdownEditor, PlainEditor } from "./Components/index";
 
 import IconPlaintextSVG from "./assets/icon-plaintext.svg";
 import IconMarkdownSVG from "./assets/icon-markdown.svg";
@@ -100,7 +100,7 @@ Previewer.propTypes = {
 };
 
 const REGISTERED_PREVIEWERS = {
-  "text/markdown": MarkdownPreviewer,
+  "text/markdown": MarkdownEditor,
   "text/plain": PlainEditor,
   "text/javascript": PlainEditor,
   "application/json": PlainEditor

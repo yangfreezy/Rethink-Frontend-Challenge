@@ -1,7 +1,7 @@
 import PlainEditor from "./PlainEditor";
-import MarkdownPreviewer from "./MarkdownPreviewer";
+import MarkdownEditor from "./MarkdownEditor";
 
 module.exports = {
   PlainEditor: PlainEditor,
-  MarkdownPreviewer: MarkdownPreviewer
+  MarkdownEditor: MarkdownEditor
 };

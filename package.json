@@ -12,8 +12,7 @@
     "prismjs": "^1.19.0",
     "react": "16.12.0",
     "react-dom": "16.12.0",
-    "react-simple-code-editor": "^0.11.0",
-    "string-strip-html": "^4.3.15"
+    "react-simple-code-editor": "^0.11.0"
   },
   "devDependencies": {
     "@babel/core": "^7.8.3",
@@ -21,8 +20,6 @@
     "@babel/polyfill": "^7.8.3",
     "@babel/preset-env": "^7.8.3",
     "@babel/preset-react": "^7.8.3",
-    "@ckeditor/ckeditor5-build-classic": "^16.0.0",
-    "@ckeditor/ckeditor5-react": "^2.1.0",
     "babel-core": "^6.26.3",
     "babel-eslint": "^10.0.3",
     "babel-jest": "^25.1.0",
