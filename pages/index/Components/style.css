@@ -27,8 +27,8 @@
 
 .buttonContainer {
   display: flex;
+  justify-content: center;
   flex-direction: row;
-  justify-content: space-between;
 }
 
 .container {
