@@ -6,30 +6,37 @@ import "prismjs/components/prism-clike";
 import "prismjs/components/prism-javascript";
 import "prismjs/components/prism-json";
 
-import CodePreviewer from "../CodePreviewer";
-
 import css from "./../style.css";
 
-const CodeEditor = props => {
-  const [preview, setPreview] = useState(false);
+const PlainEditor = props => {
+  const [editor, setEditor] = useState(false);
   const [code, setCode] = useState(
-    sessionStorage.getItem(props.file.name) || props.value
+    sessionStorage.getItem(props.file.name) || ""
   );
 
   useEffect(() => {
-    setCode(sessionStorage.getItem(props.file.name) || props.value);
+    setCode(sessionStorage.getItem(props.file.name) || "");
   }, [props.file.name]);
 
-  const togglePreview = () => {
-    setPreview(true);
+  const loadEditor = () => {
+    setEditor(true);
   };
 
   const saveFile = () => {
     sessionStorage.setItem(props.file.name, code);
-    togglePreview();
+    setEditor(false);
   };
 
-  return !preview ? (
+  return !editor ? (
+    <div className={css.editor}>
+      <div className={css.previewContainer}>
+        {sessionStorage.getItem(props.file.name) || ""}
+      </div>
+      <button className={css.button} onClick={loadEditor}>
+        Edit
+      </button>
+    </div>
+  ) : (
     <div className={css.editor}>
       <div className={css.codeEditor}>
         <Editor
@@ -48,7 +55,7 @@ const CodeEditor = props => {
         />
       </div>
       <div className={css.buttonContainer}>
-        <button className={css.button} onClick={togglePreview}>
+        <button className={css.button} onClick={setEditor.bind(this, false)}>
           Back
         </button>
         <button className={css.button} onClick={saveFile}>
@@ -56,14 +63,12 @@ const CodeEditor = props => {
         </button>
       </div>
     </div>
-  ) : (
-    <CodePreviewer file={props.file} value={code} />
   );
 };
 
-CodeEditor.propTypes = {
+PlainEditor.propTypes = {
   value: PropTypes.string,
   file: PropTypes.object
 };
 
-export default CodeEditor;
+export default PlainEditor;

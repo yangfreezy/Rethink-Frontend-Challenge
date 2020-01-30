@@ -6,11 +6,7 @@ import classNames from "classnames";
 
 import { listFiles } from "./list-files";
 
-import {
-  MarkdownPreviewer,
-  PlaintextPreviewer,
-  CodePreviewer
-} from "./Components/index";
+import { PlainEditor, MarkdownPreviewer } from "./Components/index";
 
 import IconPlaintextSVG from "./assets/icon-plaintext.svg";
 import IconMarkdownSVG from "./assets/icon-markdown.svg";
@@ -105,9 +101,9 @@ Previewer.propTypes = {
 
 const REGISTERED_PREVIEWERS = {
   "text/markdown": MarkdownPreviewer,
-  "text/plain": PlaintextPreviewer,
-  "text/javascript": CodePreviewer,
-  "application/json": CodePreviewer
+  "text/plain": PlainEditor,
+  "text/javascript": PlainEditor,
+  "application/json": PlainEditor
 };
 
 function PlaintextFilesChallenge() {
