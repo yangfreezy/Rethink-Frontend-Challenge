@@ -120,16 +120,23 @@ const MarkdownEditor = props => {
   if (markupPreviewer) {
     content = (
       <div className={css.editor}>
-        <div className={css.container}>
+        <div className={css.previewContainer}>
           <div
             dangerouslySetInnerHTML={{
               __html: marked(value)
             }}
           />
           <div className={css.buttonContainer}>
-            <button className={css.button} onClick={resetPreviewer}>
-              Discard
-            </button>
+            {value !== sessionStorage.getItem(props.file.name) ? (
+              <button className={css.button} onClick={resetPreviewer}>
+                Reset
+              </button>
+            ) : (
+              <button className={css.button} onClick={loadPreviewer}>
+                Back
+              </button>
+            )}
+
             <button className={css.button} onClick={loadEditor}>
               Edit
             </button>

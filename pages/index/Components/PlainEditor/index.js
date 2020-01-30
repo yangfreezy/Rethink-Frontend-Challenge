@@ -19,6 +19,11 @@ const PlainEditor = props => {
     setEditor(false);
   }, [props.file.name]);
 
+  const resetPreviewer = () => {
+    setCode(sessionStorage.getItem(props.file.name) || "");
+    setEditor(false);
+  };
+
   const loadEditor = () => {
     setCode(sessionStorage.getItem(props.file.name));
     setEditor(true);
@@ -57,9 +62,21 @@ const PlainEditor = props => {
         />
       </div>
       <div className={css.buttonContainer}>
-        <button className={css.button} onClick={setEditor.bind(this, false)}>
-          Back
-        </button>
+        {code !== sessionStorage.getItem(props.file.name) ? (
+          <button
+            className={css.button}
+            onClick={setCode.bind(
+              this,
+              sessionStorage.getItem(props.file.name)
+            )}
+          >
+            Reset
+          </button>
+        ) : (
+          <button className={css.button} onClick={setEditor.bind(this, false)}>
+            Back
+          </button>
+        )}
         <button className={css.button} onClick={saveFile}>
           Save
         </button>
