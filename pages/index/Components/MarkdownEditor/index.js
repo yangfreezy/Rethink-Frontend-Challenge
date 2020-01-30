@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import Editor from "react-simple-code-editor";
 import marked from "marked";
@@ -16,6 +16,11 @@ const MarkdownEditor = props => {
   const [value, setValue] = useState(
     sessionStorage.getItem(props.file.name) || props.value
   );
+
+  useEffect(() => {
+    setValue(sessionStorage.getItem(props.file.name) || "");
+    setEditor(false);
+  }, [props.file.name]);
 
   const loadPreviewer = () => {
     setValue(sessionStorage.getItem(props.file.name));

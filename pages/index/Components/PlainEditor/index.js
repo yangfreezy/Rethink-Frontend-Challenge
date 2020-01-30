@@ -16,6 +16,7 @@ const PlainEditor = props => {
 
   useEffect(() => {
     setCode(sessionStorage.getItem(props.file.name) || "");
+    setEditor(false);
   }, [props.file.name]);
 
   const loadEditor = () => {
