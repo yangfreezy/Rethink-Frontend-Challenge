@@ -23,7 +23,14 @@ const MarkdownEditor = props => {
   }, [props.file.name]);
 
   const loadPreviewer = () => {
-    setValue(sessionStorage.getItem(props.file.name));
+    setValue(value);
+    setPreviewer(true);
+    setEditor(false);
+    setMarkupPreviewer(false);
+  };
+
+  const resetPreviewer = () => {
+    setValue(sessionStorage.getItem(props.file.name) || "");
     setPreviewer(true);
     setEditor(false);
     setMarkupPreviewer(false);
@@ -35,8 +42,8 @@ const MarkdownEditor = props => {
     setPreviewer(false);
   };
 
-  const loadMarkupPreview = () => {
-    setValue(sessionStorage.getItem(props.file.name));
+  const loadMarkupPreviewer = () => {
+    setValue(value);
     setEditor(false);
     setMarkupPreviewer(true);
     setPreviewer(false);
@@ -52,14 +59,12 @@ const MarkdownEditor = props => {
   if (previewer) {
     content = (
       <div className={css.editor}>
-        <div className={css.previewContainer}>
-          {sessionStorage.getItem(props.file.name)}
-        </div>
+        <div className={css.previewContainer}>{value}</div>
         <div className={css.buttonContainer}>
           <button className={css.button} onClick={loadEditor}>
             Edit
           </button>
-          <button className={css.button} onClick={loadMarkupPreview}>
+          <button className={css.button} onClick={loadMarkupPreviewer}>
             Preview
           </button>
         </div>
@@ -87,8 +92,23 @@ const MarkdownEditor = props => {
           />
         </div>
         <div className={css.buttonContainer}>
-          <button className={css.button} onClick={loadPreviewer}>
-            Back
+          {value !== sessionStorage.getItem(props.file.name) ? (
+            <button
+              className={css.button}
+              onClick={setValue.bind(
+                this,
+                sessionStorage.getItem(props.file.name)
+              )}
+            >
+              Reset
+            </button>
+          ) : (
+            <button className={css.button} onClick={loadPreviewer}>
+              Back
+            </button>
+          )}
+          <button className={css.button} onClick={loadMarkupPreviewer}>
+            Preview
           </button>
           <button className={css.button} onClick={saveFile.bind(this, value)}>
             Save
@@ -107,12 +127,19 @@ const MarkdownEditor = props => {
             }}
           />
           <div className={css.buttonContainer}>
-            <button className={css.button} onClick={loadPreviewer}>
-              Back
+            <button className={css.button} onClick={resetPreviewer}>
+              Discard
             </button>
             <button className={css.button} onClick={loadEditor}>
               Edit
             </button>
+            {value !== sessionStorage.getItem(props.file.name) ? (
+              <button className={css.button} onClick={saveFile}>
+                Save
+              </button>
+            ) : (
+              ""
+            )}
           </div>
         </div>
       </div>
