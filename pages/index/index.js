@@ -5,7 +5,6 @@ import path from "path";
 import classNames from "classnames";
 
 import { listFiles } from "./list-files";
-
 import { MarkdownEditor, PlainEditor } from "./Components/index";
 
 import IconPlaintextSVG from "./assets/icon-plaintext.svg";
