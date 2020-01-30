@@ -1,6 +1,6 @@
 # Yang's Rethink Plaintext Editing Challenge
 
-Implemented a few features to make using plain text files a little more excitinggg.
+Plain text that's more fun than just plain text. Who would've thought that that'd even be possible. Not me.. No sir. 
 
 Rethink Software is located in Venice, CA.
 
