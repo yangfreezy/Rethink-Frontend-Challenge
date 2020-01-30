@@ -11,7 +11,7 @@ import css from "./../style.css";
 
 const MarkdownEditor = props => {
   const [editor, setEditor] = useState(false);
-  const [markup, setMarkup] = useState(false);
+  const [markupPreviewer, setMarkupPreviewer] = useState(false);
   const [previewer, setPreviewer] = useState(true);
   const [value, setValue] = useState(
     sessionStorage.getItem(props.file.name) || props.value
@@ -21,19 +21,19 @@ const MarkdownEditor = props => {
     setValue(sessionStorage.getItem(props.file.name));
     setPreviewer(true);
     setEditor(false);
-    setMarkup(false);
+    setMarkupPreviewer(false);
   };
 
   const loadEditor = () => {
     setEditor(true);
-    setMarkup(false);
+    setMarkupPreviewer(false);
     setPreviewer(false);
   };
 
-  const loadMarkup = () => {
+  const loadMarkupPreview = () => {
     setValue(sessionStorage.getItem(props.file.name));
     setEditor(false);
-    setMarkup(true);
+    setMarkupPreviewer(true);
     setPreviewer(false);
   };
 
@@ -54,7 +54,7 @@ const MarkdownEditor = props => {
           <button className={css.button} onClick={loadEditor}>
             Edit
           </button>
-          <button className={css.button} onClick={loadMarkup}>
+          <button className={css.button} onClick={loadMarkupPreview}>
             Preview
           </button>
         </div>
@@ -92,7 +92,7 @@ const MarkdownEditor = props => {
       </div>
     );
   }
-  if (markup) {
+  if (markupPreviewer) {
     content = (
       <div className={css.editor}>
         <div className={css.container}>
