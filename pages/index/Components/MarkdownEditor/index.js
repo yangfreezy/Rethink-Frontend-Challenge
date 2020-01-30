@@ -70,7 +70,7 @@ const MarkdownEditor = props => {
   if (editor) {
     content = (
       <div className={css.editor}>
-        <div className={css.editor}>
+        <div className={css.codeEditor}>
           <Editor
             value={value}
             onValueChange={value => setValue(value)}
@@ -85,14 +85,14 @@ const MarkdownEditor = props => {
               border: 5
             }}
           />
-          <div className={css.buttonContainer}>
-            <button className={css.button} onClick={loadPreviewer}>
-              Back
-            </button>
-            <button className={css.button} onClick={saveFile.bind(this, value)}>
-              Save
-            </button>
-          </div>
+        </div>
+        <div className={css.buttonContainer}>
+          <button className={css.button} onClick={loadPreviewer}>
+            Back
+          </button>
+          <button className={css.button} onClick={saveFile.bind(this, value)}>
+            Save
+          </button>
         </div>
       </div>
     );
