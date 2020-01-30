@@ -19,11 +19,6 @@ const PlainEditor = props => {
     setEditor(false);
   }, [props.file.name]);
 
-  const resetPreviewer = () => {
-    setCode(sessionStorage.getItem(props.file.name) || "");
-    setEditor(false);
-  };
-
   const loadEditor = () => {
     setCode(sessionStorage.getItem(props.file.name));
     setEditor(true);
@@ -52,12 +47,7 @@ const PlainEditor = props => {
           highlight={code => highlight(code, languages.js)}
           padding={20}
           style={{
-            color: `#000a41`,
-            fontFamily: `SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier,
-                monospace`,
-            fontSize: 16,
-            width: 600,
-            border: 5
+            width: 600
           }}
         />
       </div>
