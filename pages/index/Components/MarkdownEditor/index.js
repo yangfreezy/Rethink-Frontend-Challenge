@@ -37,9 +37,8 @@ const MarkdownEditor = props => {
     setPreviewer(false);
   };
 
-  const saveFile = value => {
+  const saveFile = () => {
     sessionStorage.setItem(props.file.name, value);
-    setValue(value);
     loadPreviewer();
   };
 
