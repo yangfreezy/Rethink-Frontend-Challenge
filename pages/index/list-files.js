@@ -133,9 +133,9 @@ export default initialValue => {
   };
 
   files.map(file => {
-    sessionStorage.getItem(file.name)
+    localStorage.getItem(file.name)
       ? null
-      : sessionStorage.setItem(file.name, fileData[file.name]);
+      : localStorage.setItem(file.name, fileData[file.name]);
   });
 
   return [guide, plain, water, fancy, javascript, json];

@@ -14,11 +14,11 @@ const MarkdownEditor = props => {
   const [markupPreviewer, setMarkupPreviewer] = useState(false);
   const [previewer, setPreviewer] = useState(true);
   const [value, setValue] = useState(
-    sessionStorage.getItem(props.file.name) || props.value
+    localStorage.getItem(props.file.name) || props.value
   );
 
   useEffect(() => {
-    setValue(sessionStorage.getItem(props.file.name) || "");
+    setValue(localStorage.getItem(props.file.name) || "");
     setEditor(false);
   }, [props.file.name]);
 
@@ -30,7 +30,7 @@ const MarkdownEditor = props => {
   };
 
   const resetPreviewer = () => {
-    setValue(sessionStorage.getItem(props.file.name) || "");
+    setValue(localStorage.getItem(props.file.name) || "");
     setPreviewer(true);
     setEditor(false);
     setMarkupPreviewer(false);
@@ -50,7 +50,7 @@ const MarkdownEditor = props => {
   };
 
   const saveFile = () => {
-    sessionStorage.setItem(props.file.name, value);
+    localStorage.setItem(props.file.name, value);
     loadPreviewer();
   };
 
@@ -92,12 +92,12 @@ const MarkdownEditor = props => {
           />
         </div>
         <div className={css.buttonContainer}>
-          {value !== sessionStorage.getItem(props.file.name) ? (
+          {value !== localStorage.getItem(props.file.name) ? (
             <button
               className={css.button}
               onClick={setValue.bind(
                 this,
-                sessionStorage.getItem(props.file.name)
+                localStorage.getItem(props.file.name)
               )}
             >
               Reset
@@ -127,7 +127,7 @@ const MarkdownEditor = props => {
             }}
           />
           <div className={css.buttonContainer}>
-            {value !== sessionStorage.getItem(props.file.name) ? (
+            {value !== localStorage.getItem(props.file.name) ? (
               <button className={css.button} onClick={resetPreviewer}>
                 Reset
               </button>
@@ -140,7 +140,7 @@ const MarkdownEditor = props => {
             <button className={css.button} onClick={loadEditor}>
               Edit
             </button>
-            {value !== sessionStorage.getItem(props.file.name) ? (
+            {value !== localStorage.getItem(props.file.name) ? (
               <button className={css.button} onClick={saveFile}>
                 Save
               </button>

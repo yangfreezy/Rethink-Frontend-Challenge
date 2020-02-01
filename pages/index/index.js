@@ -88,7 +88,7 @@ function Previewer({ file }) {
     <div className={css.preview}>
       <div className={css.title}>{path.basename(file.name)}</div>
       <div className={css.content}>
-        {sessionStorage.getItem(file.name) || value}
+        {localStorage.getItem(file.name) || value}
       </div>
     </div>
   );
@@ -166,7 +166,7 @@ function PlaintextFilesChallenge() {
                 <Previewer
                   file={activeFile}
                   value={
-                    sessionStorage.getItem(activeFile.name) || activeFile.value
+                    localStorage.getItem(activeFile.name) || activeFile.value
                   }
                 />
               </div>

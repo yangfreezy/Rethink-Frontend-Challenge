@@ -10,29 +10,27 @@ import css from "./../style.css";
 
 const PlainEditor = props => {
   const [editor, setEditor] = useState(false);
-  const [code, setCode] = useState(
-    sessionStorage.getItem(props.file.name) || ""
-  );
+  const [code, setCode] = useState(localStorage.getItem(props.file.name) || "");
 
   useEffect(() => {
-    setCode(sessionStorage.getItem(props.file.name) || "");
+    setCode(localStorage.getItem(props.file.name) || "");
     setEditor(false);
   }, [props.file.name]);
 
   const loadEditor = () => {
-    setCode(sessionStorage.getItem(props.file.name));
+    setCode(localStorage.getItem(props.file.name));
     setEditor(true);
   };
 
   const saveFile = () => {
-    sessionStorage.setItem(props.file.name, code);
+    localStorage.setItem(props.file.name, code);
     setEditor(false);
   };
 
   return !editor ? (
     <div className={css.editor}>
       <div className={css.previewContainer}>
-        {sessionStorage.getItem(props.file.name) || ""}
+        {localStorage.getItem(props.file.name) || ""}
       </div>
       <button className={css.button} onClick={loadEditor}>
         Edit
@@ -52,13 +50,10 @@ const PlainEditor = props => {
         />
       </div>
       <div className={css.buttonContainer}>
-        {code !== sessionStorage.getItem(props.file.name) ? (
+        {code !== localStorage.getItem(props.file.name) ? (
           <button
             className={css.button}
-            onClick={setCode.bind(
-              this,
-              sessionStorage.getItem(props.file.name)
-            )}
+            onClick={setCode.bind(this, localStorage.getItem(props.file.name))}
           >
             Reset
           </button>
